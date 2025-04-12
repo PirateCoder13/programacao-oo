@@ -1,36 +1,29 @@
 import java.util.ArrayList;
 
-/**
- * Gerencia o ranking de jogadores
- */
+// Classe que gerencia o ranking dos jogadores, armazena os jogadores e suas pontuações.
 public class Placar {
 	private ArrayList<Jogador> ranking;
 
-	/**
-	 * Construtor que inicializa a lista de jogadores
-	 */
+	// Construtor que inicializa a lista do ranking (começa vazia)
 	public Placar() {
 		ranking = new ArrayList<>();
 	}
 
-	/**
-	 * Adiciona um jogador ao ranking
-	 * 
-	 * @param j Jogador a ser adicionado
-	 */
+	// Adiciona um jogador ao ranking para que ele seja classificado.
 	public void adicionarJogador(Jogador j) {
 		ranking.add(j);
 	}
 
-	/**
-	 * Exibe o ranking de jogadores ordenado por pontuação
-	 */
+	// Exibe o ranking de jogadores, ordenado pela pontuação (do maior para o
+	// menor).
 	public void mostrarRanking() {
-		// Ordena do maior para o menor
+		// Ordena o ranking, colocando o jogador com maior pontuação primeiro
 		ranking.sort((j1, j2) -> j2.getPontuacao() - j1.getPontuacao());
 
+		// Exibe o ranking na tela
 		System.out.println("\n=== RANKING ===");
 		for (Jogador j : ranking) {
+			// Loop para mostrar o nome do jogador e a pontuação dele
 			System.out.println(j.getNome() + ": " + j.getPontuacao() + " pontos");
 		}
 	}
