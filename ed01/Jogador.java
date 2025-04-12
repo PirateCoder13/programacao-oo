@@ -1,23 +1,18 @@
-/**
- * Representa um jogador do jogo de adivinhação
- */
+// Classe que representa um jogador: guarda o nome, quantas tentativas ele já fez e a pontuação.
 public class Jogador {
 	private String nome;
 	private int tentativas;
 	private int pontuacao;
 
-	/**
-	 * Construtor que inicializa o jogador com nome
-	 * 
-	 * @param nome Nome do jogador
-	 */
+	// Cria o jogador com um nome e começa com 0 tentativas e 0 pontos.
 	public Jogador(String nome) {
 		this.nome = nome;
 		this.tentativas = 0;
 		this.pontuacao = 0;
 	}
 
-	// Getters e Setters
+	// Getters e Setters (métodos pra pegar e mudar os dados do jogador)
+
 	public String getNome() {
 		return nome;
 	}
@@ -42,18 +37,12 @@ public class Jogador {
 		this.pontuacao = pontuacao;
 	}
 
-	/**
-	 * Incrementa o número de tentativas em 1
-	 */
+	// Aumenta em 1 o número de tentativas do jogador.
 	public void incrementarTentativas() {
 		this.tentativas++;
 	}
 
-	/**
-	 * Adiciona pontos à pontuação do jogador
-	 * 
-	 * @param valor Pontos a serem adicionados
-	 */
+	// Adiciona pontos à pontuação do jogador (geralmente quando acerta).
 	public void atualizarPontuacao(int valor) {
 		this.pontuacao += valor;
 	}
