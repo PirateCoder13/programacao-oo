@@ -1,5 +1,5 @@
 /**
- * Classe que representa um jogador: guarda o nome, quantas tentativas ele já fez e a pontuação.
+ * Classe que representa um jogador: guarda o nome, tentativas e pontuação.
  */
 public class Jogador {
 
@@ -8,7 +8,8 @@ public class Jogador {
     private int pontuacao;
 
     /**
-     * Cria o jogador com um nome e começa com 0 tentativas e 0 pontos.
+     * Cria o jogador com um nome e define 0 tentativas e 0 pontos
+     * 
      * @param nome Nome do jogador
      */
     public Jogador(String nome) {
@@ -19,6 +20,7 @@ public class Jogador {
 
     /**
      * Retorna o nome do jogador.
+     * 
      * @return nome do jogador
      */
     public String getNome() {
@@ -26,15 +28,17 @@ public class Jogador {
     }
 
     /**
-     * Retorna o número de tentativas do jogador.
-     * @return tentativas do jogador
+     * Retorna o número de tentativas.
+     * 
+     * @return tentativas feitas
      */
     public int getTentativas() {
         return tentativas;
     }
 
     /**
-     * Retorna a pontuação do jogador.
+     * Retorna a pontuação.
+     * 
      * @return pontuação do jogador
      */
     public int getPontuacao() {
@@ -42,7 +46,8 @@ public class Jogador {
     }
 
     /**
-     * Define o nome do jogador.
+     * Define o nome.
+     * 
      * @param nome Novo nome
      */
     public void setNome(String nome) {
@@ -50,7 +55,8 @@ public class Jogador {
     }
 
     /**
-     * Define o número de tentativas do jogador.
+     * Define o número de tentativas.
+     * 
      * @param tentativas Novo número de tentativas
      */
     public void setTentativas(int tentativas) {
@@ -58,7 +64,8 @@ public class Jogador {
     }
 
     /**
-     * Define a pontuação do jogador.
+     * Define a pontuação.
+     * 
      * @param pontuacao Nova pontuação
      */
     public void setPontuacao(int pontuacao) {
@@ -66,14 +73,15 @@ public class Jogador {
     }
 
     /**
-     * Aumenta em 1 o número de tentativas do jogador.
+     * Aumenta o número de tentativas.
      */
     public void incrementarTentativas() {
         this.tentativas++;
     }
 
     /**
-     * Adiciona pontos à pontuação do jogador (geralmente quando acerta).
+     * Adiciona pontos à pontuação do jogador.
+     * 
      * @param valor Pontos a serem adicionados
      */
     public void atualizarPontuacao(int valor) {

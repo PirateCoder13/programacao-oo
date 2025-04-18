@@ -1,14 +1,10 @@
 import java.util.Scanner;
 
-/**
- * Classe principal que executa o jogo de adivinhação.
- */
+//Classe principal que executa o jogo de adivinhação.
+
 public class Main {
 
-    /**
-     * Método principal que executa o loop do jogo, interage com o usuário e exibe o ranking.
-     * @param args Argumentos da linha de comando (não usados)
-     */
+    // Método principal que executa o loop do jogo, interage com o usuário e exibe o ranking.
     public static void main(String[] args) {
 
         Scanner teclado = new Scanner(System.in);
@@ -58,10 +54,11 @@ public class Main {
                 // Chama o método jogar para verificar a tentativa do jogador.
                 String resultado = jogo.jogar(tentativa);
 
-                // Dependendo do resultado da tentativa, o jogador recebe dicas ou acerta.
+                // Dependendo do resultado da tentativa, o jogador recebe dicas.
                 switch (resultado) {
                     case "acertou":
-                        System.out.println("\n✅ Finalmente acertou depois de " + jogador.getTentativas() + " tentativas!");
+                        System.out.println(
+                                "\n✅ Finalmente acertou depois de " + jogador.getTentativas() + " tentativas!");
                         System.out.println("Pontuação: " + jogador.getPontuacao() + " pontos");
                         acertou = true; // Marca o final do jogo quando o jogador acerta.
                         break;
