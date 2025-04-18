@@ -33,7 +33,7 @@ public class Main {
 
             // Explicação do sistema de pontuação.
             System.out.println("\nOlá, " + nome + "! Bem-vindo ao jogo de adivinhação!");
-            System.out.println("📋 Sistema de Pontuação:");
+            System.out.println("--=+Sistema de Pontuação+=--");
             System.out.println("- Você começa com 100 pontos.");
             System.out.println("- A cada tentativa errada, perde 10 pontos.");
             System.out.println("- Tente acertar o número secreto com o menor número de tentativas possível!");
@@ -58,7 +58,7 @@ public class Main {
                 switch (resultado) {
                     case "acertou":
                         System.out.println(
-                                "\n✅ Finalmente acertou depois de " + jogador.getTentativas() + " tentativas!");
+                                "\n Finalmente acertou depois de " + jogador.getTentativas() + " tentativas!");
                         System.out.println("Pontuação: " + jogador.getPontuacao() + " pontos");
                         acertou = true; // Marca o final do jogo quando o jogador acerta.
                         break;
