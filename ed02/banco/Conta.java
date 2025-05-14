@@ -4,18 +4,18 @@ package ed02.banco;
  * Classe base que representa uma conta bancária genérica.
  */
 public abstract class Conta {
-    private String cliente;
+    protected String cliente;
     protected double saldo;
 
     /**
      * Construtor que inicializa a conta com cliente e saldo.
      * 
      * @param cliente Nome do titular da conta
-     * @param saldo   Saldo inicial
+     * @param saldoInicial Saldo inicial
      */
-    public Conta(String cliente, double saldo) {
+    public Conta(String cliente, double saldoInicial) {
         this.cliente = cliente;
-        this.saldo = saldo;
+        this.saldo = saldoInicial;
     }
 
     /**
@@ -24,9 +24,7 @@ public abstract class Conta {
      * @param valor Valor a ser depositado
      */
     public void depositar(double valor) {
-        if (valor > 0) {
-            saldo += valor;
-        }
+        if (valor > 0) saldo += valor;
     }
 
     /**
@@ -51,7 +49,7 @@ public abstract class Conta {
      * @return true se a transferência foi bem-sucedida
      */
     public boolean transferir(Conta destino, double valor) {
-        if (sacar(valor)) {
+        if (this.sacar(valor)) {
             destino.depositar(valor);
             return true;
         }
@@ -68,15 +66,19 @@ public abstract class Conta {
     }
 
     /**
+     * Imprime o extrato da conta.
+     */
+    public abstract void imprimirExtrato();
+
+    /**
+     * Imprime o extrato da conta com saldo antes dos juros.
+     * 
+     * @param saldoAntesJuros Saldo antes da aplicação dos juros
+     */
+    public abstract void imprimirExtrato(double saldoAntesJuros);
+
+    /**
      * Aplica juros diários específicos de cada tipo de conta.
      */
     public abstract void aplicarJurosDiarios();
-
-    /**
-     * Imprime o extrato da conta.
-     */
-    public void imprimirExtrato() {
-        System.out.println("Cliente: " + cliente);
-        System.out.println("Saldo: R$ " + saldo);
-    }
 }

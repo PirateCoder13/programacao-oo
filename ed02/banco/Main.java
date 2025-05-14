@@ -10,12 +10,16 @@ public class Main {
         cp.sacar(100);
         cs.transferir(cc, 300);
 
+        double saldoAntesJurosCC = cc.getSaldo();
+        double saldoAntesJurosCP = cp.getSaldo();
+        double saldoAntesJurosCS = cs.getSaldo();
+
         cc.aplicarJurosDiarios();
         cp.aplicarJurosDiarios();
         cs.aplicarJurosDiarios();
 
-        cc.imprimirExtrato();
-        cp.imprimirExtrato();
-        cs.imprimirExtrato();
+        cc.imprimirExtrato(saldoAntesJurosCC);
+        cp.imprimirExtrato(saldoAntesJurosCP);
+        cs.imprimirExtrato(saldoAntesJurosCS);
     }
 }
