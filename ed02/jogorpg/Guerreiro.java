@@ -1,26 +1,24 @@
 package ed02.jogorpg;
 
 /**
- * Classe Guerreiro: alta defesa e golpe duplo.
+ * Classe que representa um Guerreiro no RPG.
+ * Possui habilidade especial de aumentar o ataque.
  */
 public class Guerreiro extends Personagem {
+    /**
+     * Cria um novo Guerreiro.
+     * @param nome Nome do guerreiro
+     */
     public Guerreiro(String nome) {
-        super(nome, 150, 20);
+        super(nome, 120, 20);
     }
 
-    @Override
-    public void defender(int dano) {
-        hp -= dano / 2; // Reduz dano pela metade
-    }
-
+    /**
+     * Aumenta o ataque do guerreiro temporariamente.
+     */
     @Override
     public void usarHabilidadeEspecial() {
-        ataqueBase *= 2; // Golpe duplo
-    }
-
-    @Override
-    public void status() {
-        System.out.print("[Guerreiro] ");
-        super.status();
+        System.out.printf("%s usa Fúria do Guerreiro! Ataque aumentado.\n", nome);
+        ataque += 10;
     }
 }

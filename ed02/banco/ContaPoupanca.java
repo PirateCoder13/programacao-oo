@@ -1,18 +1,21 @@
 package ed02.banco;
 
 /**
- * Classe que representa uma conta poupança, aplicando juros de 0.08% ao dia.
+ * Representa uma conta poupança, que aplica 0.08% de juros ao dia.
  */
 public class ContaPoupanca extends Conta {
+    /**
+     * Cria uma nova Conta Poupança.
+     * @param cliente Nome do cliente
+     * @param saldoInicial Saldo inicial
+     */
     public ContaPoupanca(String cliente, double saldoInicial) {
         super(cliente, saldoInicial);
     }
 
-    @Override
-    public void aplicarJurosDiarios() {
-        saldo += saldo * 0.0008; // 0.08% ao dia
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void imprimirExtrato(double saldoAntesJuros) {
         System.out.println("======================================");
@@ -22,5 +25,13 @@ public class ContaPoupanca extends Conta {
         System.out.printf("Saldo após os juros:  R$ %.2f\n", saldo);
         System.out.println("Juros diário aplicado: 0.08%");
         System.out.println("======================================");
+    }
+
+    /**
+     * Aplica 0.08% de juros ao saldo.
+     */
+    @Override
+    public void aplicarJurosDiarios() {
+        saldo += saldo * 0.0008;
     }
 }

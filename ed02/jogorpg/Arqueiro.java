@@ -1,31 +1,24 @@
 package ed02.jogorpg;
 
 /**
- * Classe Arqueiro: ataques críticos e chuva de flechas.
+ * Classe que representa um Arqueiro no RPG.
+ * Possui habilidade especial de ataque duplo.
  */
 public class Arqueiro extends Personagem {
+    /**
+     * Cria um novo Arqueiro.
+     * @param nome Nome do arqueiro
+     */
     public Arqueiro(String nome) {
-        super(nome, 100, 25);
+        super(nome, 100, 18);
     }
 
-    @Override
-    public void atacar(Personagem inimigo) {
-        // 30% de chance de crítico
-        if (Math.random() < 0.3) {
-            inimigo.defender(ataqueBase * 2);
-        } else {
-            super.atacar(inimigo);
-        }
-    }
-
+    /**
+     * Realiza um ataque duplo.
+     */
     @Override
     public void usarHabilidadeEspecial() {
-        ataqueBase *= 3; // Chuva de flechas (3 ataques)
-    }
-
-    @Override
-    public void status() {
-        System.out.print("[Arqueiro] ");
-        super.status();
+        System.out.printf("%s usa Flecha Dupla! Ataque realizado duas vezes.\n", nome);
+        ataque += 5;
     }
 }

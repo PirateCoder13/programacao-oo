@@ -1,6 +1,14 @@
 package ed02.banco;
 
+/**
+ * Classe principal para demonstração do sistema bancário.
+ * Cria contas, realiza operações e imprime extratos mostrando saldos antes e depois dos juros.
+ */
 public class Main {
+    /**
+     * Método principal que executa o exemplo do sistema bancário.
+     * @param args Argumentos da linha de comando (não utilizados)
+     */
     public static void main(String[] args) {
         ContaCorrente cc = new ContaCorrente("Alice", 1000);
         ContaPoupanca cp = new ContaPoupanca("Bob", 1500);

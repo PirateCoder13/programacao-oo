@@ -2,45 +2,55 @@ package ed02.jogorpg;
 
 /**
  * Classe base para personagens do RPG.
+ * Define atributos e métodos comuns a todos os personagens.
  */
 public abstract class Personagem {
-    private String nome;
-    protected int hp;
-    protected int ataqueBase;
+    /** Nome do personagem */
+    protected String nome;
+    /** Pontos de vida */
+    protected int vida;
+    /** Pontos de ataque */
+    protected int ataque;
 
-    public Personagem(String nome, int hp, int ataqueBase) {
+    /**
+     * Construtor do personagem.
+     * @param nome Nome do personagem
+     * @param vida Pontos de vida iniciais
+     * @param ataque Pontos de ataque iniciais
+     */
+    public Personagem(String nome, int vida, int ataque) {
         this.nome = nome;
-        this.hp = hp;
-        this.ataqueBase = ataqueBase;
+        this.vida = vida;
+        this.ataque = ataque;
     }
-
-    /**
-     * Realiza um ataque contra outro personagem.
-     * 
-     * @param inimigo Alvo do ataque
-     */
-    public void atacar(Personagem inimigo) {
-        inimigo.defender(ataqueBase);
-    }
-
-    /**
-     * Recebe dano de um ataque.
-     * 
-     * @param dano Valor do dano recebido
-     */
-    public void defender(int dano) {
-        hp -= dano;
-    }
-
-    /**
-     * Habilidade especial única de cada classe.
-     */
-    public abstract void usarHabilidadeEspecial();
 
     /**
      * Exibe o status atual do personagem.
      */
     public void status() {
-        System.out.println(nome + " | HP: " + hp + " | Ataque: " + ataqueBase);
+        System.out.printf("%s - Vida: %d | Ataque: %d\n", nome, vida, ataque);
     }
+
+    /**
+     * Realiza um ataque em outro personagem.
+     * @param alvo Personagem alvo do ataque
+     */
+    public void atacar(Personagem alvo) {
+        System.out.printf("%s ataca %s causando %d de dano!\n", nome, alvo.nome, ataque);
+        alvo.receberDano(ataque);
+    }
+
+    /**
+     * Reduz a vida do personagem ao receber dano.
+     * @param dano Quantidade de dano recebido
+     */
+    public void receberDano(int dano) {
+        vida -= dano;
+        if (vida < 0) vida = 0;
+    }
+
+    /**
+     * Usa a habilidade especial do personagem.
+     */
+    public abstract void usarHabilidadeEspecial();
 }

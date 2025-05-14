@@ -1,26 +1,24 @@
 package ed02.jogorpg;
 
 /**
- * Classe Mago: ataque em área e defesa fraca.
+ * Classe que representa um Mago no RPG.
+ * Possui habilidade especial de recuperar vida.
  */
 public class Mago extends Personagem {
+    /**
+     * Cria um novo Mago.
+     * @param nome Nome do mago
+     */
     public Mago(String nome) {
-        super(nome, 80, 30);
+        super(nome, 80, 25);
     }
 
-    @Override
-    public void defender(int dano) {
-        hp -= dano + 5; // Defesa fraca
-    }
-
+    /**
+     * Recupera vida ao usar magia.
+     */
     @Override
     public void usarHabilidadeEspecial() {
-        ataqueBase += 15; // Bola de fogo
-    }
-
-    @Override
-    public void status() {
-        System.out.print("[Mago] ");
-        super.status();
+        System.out.printf("%s usa Cura Mágica! Vida recuperada.\n", nome);
+        vida += 20;
     }
 }
