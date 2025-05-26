@@ -1,14 +1,14 @@
 package ed03;
 
 /**
- * Classe abstrata que representa um funcionário genérico.
+ * Classe abstrata que representa um funcionário genérico
  */
 public abstract class Funcionario {
     protected String nome;
     protected double salarioBase;
-    
+
     /**
-     * Construtor da classe Funcionario.
+     * Construtor da classe Funcionario
      * @param nome Nome do funcionário
      * @param salarioBase Salário base do funcionário
      */
@@ -16,17 +16,17 @@ public abstract class Funcionario {
         this.nome = nome;
         this.salarioBase = salarioBase;
     }
-    
+
     /**
-     * Exibe os dados básicos do funcionário.
+     * Exibe os dados básicos do funcionário
      */
     public void exibirDados() {
         System.out.println("Nome: " + nome);
         System.out.println("Salário Base: " + salarioBase);
     }
-    
+
     /**
-     * Método abstrato para cálculo do salário final.
+     * Método abstrato para calcular o salário final
      * @return Salário final calculado
      */
     public abstract double calcularSalario();

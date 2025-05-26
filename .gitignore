@@ -1,0 +1,15 @@
+# Ignorar pasta .vscode
+.vscode/
+
+# Ignorar arquivos compilados do Java
+*.class
+
+# Ignorar arquivos de IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db 

@@ -1,26 +1,26 @@
 package ed03;
 
 /**
- * Classe que representa um funcionário CLT.
+ * Classe que representa um funcionário CLT
  */
 public class FuncionarioCLT extends Funcionario {
-    private static final double ADICIONAL = 300.0;
-    
+    private static final double ADICIONAL_FIXO = 300.0;
+
     /**
-     * Construtor da classe FuncionarioCLT.
+     * Construtor da classe FuncionarioCLT
      * @param nome Nome do funcionário
      * @param salarioBase Salário base do funcionário
      */
     public FuncionarioCLT(String nome, double salarioBase) {
         super(nome, salarioBase);
     }
-    
+
     /**
-     * Calcula o salário final do funcionário CLT.
+     * Calcula o salário final do funcionário CLT
      * @return Salário base + adicional fixo
      */
     @Override
     public double calcularSalario() {
-        return salarioBase + ADICIONAL;
+        return salarioBase + ADICIONAL_FIXO;
     }
 } 

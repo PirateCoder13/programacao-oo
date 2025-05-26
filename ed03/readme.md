@@ -1,210 +1,110 @@
-Estudo Dirigido 03
-Instruções
-Entrega via GitHub
+# Estudo Dirigido 03 - Sistemas de Folha de Pagamento, Impressão e Login
 
-Salvar os arquivos no diretório: ed03/
+Este projeto implementa três sistemas diferentes utilizando conceitos de Programação Orientada a Objetos como herança, interfaces e polimorfismo.
 
-Todos os códigos devem estar documentados com Javadoc
+## 1. Sistema de Folha de Pagamento
 
-Data limite de entrega: 28/05
+O sistema de folha de pagamento implementa diferentes tipos de funcionários com suas próprias regras de cálculo salarial.
 
-1. Folha de pagamento
-Você precisa modelar um sistema de folha de pagamento simplificado. O ponto central é a existência de diferentes tipos de funcionários, cada um com sua própria forma de cálculo de salário final. Para isso, será criada uma classe abstrata que define uma estrutura comum, e classes concretas que especializam o comportamento do cálculo salarial por meio da sobrescrita de método.
+### Estrutura:
+- `Funcionario` (classe abstrata)
+  - Atributos: nome, salarioBase
+  - Métodos: exibirDados(), calcularSalario() (abstrato)
 
-Etapas
-Implemente uma classe abstrata chamada Funcionario contendo:
+- `FuncionarioCLT` (herda de Funcionario)
+  - Adicional fixo de R$ 300,00
+  - Salário final = salário base + adicional
 
-Atributo nome (tipo String) – representa o nome do funcionário.
+- `FuncionarioTemporario` (herda de Funcionario)
+  - Desconto fixo de R$ 100,00
+  - Salário final = salário base - desconto
 
-Atributo salarioBase (tipo double) – representa o salário base.
+### Exemplo de uso:
+```java
+FuncionarioCLT carlos = new FuncionarioCLT("Carlos", 2000.0);
+FuncionarioTemporario ana = new FuncionarioTemporario("Ana", 2000.0);
+```
 
-Método exibirDados() que imprime o nome e o salário base.
+## 2. Sistema de Impressão
 
-Método abstrato calcularSalario() que retorna um double.
+O sistema de impressão permite a impressão de diferentes tipos de conteúdo digital através de uma interface comum.
 
-Crie uma classe concreta FuncionarioCLT que herda de Funcionario:
+### Estrutura:
+- `Imprimivel` (interface)
+  - Método: imprimir()
 
-Este tipo de funcionário recebe um adicional fixo de R$ 300,00.
+Classes que implementam Imprimivel:
+- `DocumentoTexto`
+  - Atributos: titulo, conteudo
+  - Imprime título em maiúsculas e conteúdo
 
-O método calcularSalario() deve retornar salarioBase + 300.
+- `ImagemDigital`
+  - Atributos: nomeArquivo, resolucao
+  - Imprime nome do arquivo e resolução
 
-Crie uma segunda classe concreta FuncionarioTemporario, também filha de Funcionario:
+- `GraficoEstatistico`
+  - Atributos: titulo, tipoGrafico
+  - Imprime tipo do gráfico e título em maiúsculas
 
-Este tipo de funcionário tem um desconto fixo de R$ 100,00.
+- `RelatorioPDF`
+  - Atributos: autor, numeroPaginas
+  - Imprime autor e número de páginas
 
-O método calcularSalario() deve retornar salarioBase - 100.
+### Exemplo de uso:
+```java
+DocumentoTexto doc = new DocumentoTexto("Título", "Conteúdo");
+ImagemDigital img = new ImagemDigital("foto.jpg", "1920x1080");
+doc.imprimir();
+img.imprimir();
+```
 
-Crie uma classe ProgramaFolha com método main:
+## 3. Sistema de Login
 
-Crie uma instância de FuncionarioCLT com nome "Carlos" e salário base R$ 2000,00.
+O sistema de login implementa diferentes tipos de usuários com diferentes níveis de acesso e funcionalidades.
 
-Crie uma instância de FuncionarioTemporario com nome "Ana" e salário base R$ 2000,00.
+### Estrutura:
+Interfaces:
+- `Autenticavel`
+  - Método: autenticar(String senha)
 
-Para cada instância:
+- `Gerenciavel`
+  - Métodos: alterarSenha(String novaSenha), bloquearUsuario()
 
-Chame o método exibirDados().
+- `Logavel`
+  - Método: registrarLog(String operacao)
 
-Exiba o salário calculado com base na chamada de calcularSalario().
+Classes:
+- `Usuario` (classe abstrata)
+  - Atributos: login, senha
+  - Método: exibirLogin()
 
-Saída Esperada
-Copiar
-Nome: Carlos
-Salário Base: 2000.0
-Salário Final: 2300.0
+- `Administrador` (herda de Usuario, implementa Autenticavel, Gerenciavel, Logavel)
+  - Autenticação simples (senha igual)
+  - Pode alterar senha, bloquear usuários e registrar logs
 
-Nome: Ana
-Salário Base: 2000.0
-Salário Final: 1900.0
-2. Gráfica Online
-Você deve modelar um sistema que permita a impressão de diversos tipos de conteúdo digital (documentos, imagens, gráficos, relatórios), onde cada tipo possui uma lógica de apresentação própria. Para isso, será utilizada uma interface Imprimivel com um método comum, a ser sobrescrito por todas as classes.
+- `Visitante` (herda de Usuario)
+  - Acesso restrito
+  - Sobrescreve exibirLogin() para mostrar mensagem de restrição
 
-Etapas
-Crie uma interface chamada Imprimivel contendo:
+- `Cliente` (herda de Usuario, implementa Autenticavel)
+  - Autenticação com senha > 6 caracteres
+  - Acesso básico ao sistema
 
-Método void imprimir(); — Sem parâmetros, responsável pela exibição dos dados do objeto de forma específica para cada tipo.
+### Exemplo de uso:
+```java
+Administrador admin = new Administrador("admin", "admin123");
+Visitante visitante = new Visitante("guest", "qualquer");
+Cliente cliente = new Cliente("joao", "segredo123");
 
-Implemente a classe DocumentoTexto com os seguintes atributos:
+admin.autenticar("admin123"); // true
+cliente.autenticar("12345"); // false (senha muito curta)
+```
 
-titulo (tipo String)
+## Como Executar
 
-conteudo (tipo String)
+Para executar cada sistema, use as classes principais:
+1. `ProgramaFolha` - Demonstra o sistema de folha de pagamento
+2. `ProgramaImpressao` - Demonstra o sistema de impressão
+3. `ProgramaLogin` - Demonstra o sistema de login
 
-O método imprimir() deve exibir o título em letras maiúsculas, seguido do conteúdo do texto.
-
-Implemente a classe ImagemDigital com os seguintes atributos:
-
-nomeArquivo (tipo String)
-
-resolucao (tipo String)
-
-O método imprimir() deve exibir o nome do arquivo e sua resolução (ex: “1920x1080”).
-
-Adicione mais duas implementações da interface:
-
-Classe GraficoEstatistico com os atributos:
-
-titulo (String)
-
-tipoGrafico (String) — Ex: "pizza", "barra"
-
-imprimir() deve exibir o tipo de gráfico seguido do título em caixa alta.
-
-Classe RelatorioPDF com os atributos:
-
-autor (String)
-
-numeroPaginas (int)
-
-imprimir() deve exibir o nome do autor e o número total de páginas.
-
-Crie a classe ProgramaImpressao com método main:
-
-Instancie objetos das quatro classes implementadoras de Imprimivel.
-
-Chame o método imprimir() diretamente em cada instância (sem uso de polimorfismo via Imprimivel).
-
-Saída Esperada
-Copiar
-DOCUMENTO DE APRESENTAÇÃO
-Este é o conteúdo do documento.
-
-Arquivo: paisagem.jpg
-Resolução: 1920x1080
-
-Gráfico do tipo: BARRA
-Título: DISTRIBUIÇÃO DE VENDAS
-
-Autor: João Silva
-Total de páginas: 12
-3. Sistema de Login
-Você precisa desenvolver um modelo que represente usuários de um sistema computacional, distinguindo aqueles que podem autenticar-se de acordo com regras específicas, e outros que possuem acessos limitados ou funcionalidades administrativas. 
-
-Etapas
-Crie a interface Autenticavel com o seguinte método:
-
-autenticar(String senha); - Este método verifica se a senha fornecida é válida segundo alguma regra.
-
-Crie uma interface Gerenciavel com os métodos:
-
-void alterarSenha(String novaSenha);
-
-void bloquearUsuario();
-
-Crie uma interface Logavel com o método:
-
-registrarLog(String operacao); - Este método simula a gravação de um log de auditoria.
-
-Crie uma classe abstrata Usuario com os seguintes atributos:
-
-login (String)
-
-senha (String)
-
-A classe Usuario deve fornecer o seguinte método concreto:
-
-void exibirLogin() que imprime o valor de login.
-
-Classe Administrador:
-
-Herda de Usuario.
-
-Implementa as interfaces Autenticavel, Gerenciavel e Logavel.
-
-A autenticação é considerada bem-sucedida se a senha fornecida for igual à armazenada.
-
-O método alterarSenha() altera a senha armazenada.
-
-O método bloquearUsuario() exibe a mensagem "Usuário bloqueado com sucesso."
-
-O método registrarLog() imprime a operação registrada com a seguinte estrutura:
-"Log registrado: <operacao>"
-
-Classe Visitante:
-
-Herda de Usuario.
-
-Não implementa nenhuma interface.
-
-Sobrescreve o método exibirLogin() para imprimir a mensagem:
-"Visitante - acesso restrito ao sistema."
-
-Classe Cliente:
-
-Herda de Usuario.
-
-Implementa apenas a interface Autenticavel.
-
-A autenticação considera válida a senha armazenada apenas se a senha tiver mais de 6 caracteres e corresponder exatamente à senha atual.
-
-Herda o método exibirLogin() diretamente da classe Usuario.
-
-Crie a classe ProgramaLogin com método main:
-
-Um Administrador com login "admin" e senha "admin123".
-
-Um Visitante com login "guest" e senha "qualquer".
-
-Um Cliente com login "joao" e senha "segredo123".
-
-Para cada objeto:
-
-Chame o método exibirLogin().
-
-Para os que implementam Autenticavel, execute o método autenticar() com uma senha correta e uma senha incorreta.
-
-Nos casos aplicáveis, utilize também os métodos de Gerenciavel e Logavel.
-
-Saída Esperada
-Copiar
-Login: admin
-Autenticação com 'admin123': true
-Autenticação com 'errada': false
-Senha alterada com sucesso.
-Usuário bloqueado com sucesso.
-Log registrado: Exclusão de conta
-
-Visitante - acesso restrito ao sistema.
-
-Login: joao
-Autenticação com 'segredo123': true
-Autenticação com '12345': false
+Cada programa principal contém exemplos de uso de todas as funcionalidades implementadas.
