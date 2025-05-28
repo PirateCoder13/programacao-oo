@@ -75,4 +75,15 @@ A documentação será gerada na pasta `doc`.
 
 ---
 
-Desenvolvido para fins didáticos na disciplina de Programação Orientada a Objetos.
+
+# Compilar todos os arquivos
+javac ed03/*.java
+
+# Executar a folha de pagamento
+java ed03/ProgramaFolha
+
+# Executar o sistema de impressão
+java ed03/ProgramaImpressao
+
+# Executar o sistema de login
+java ed03/ProgramaLogin
