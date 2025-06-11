@@ -1,53 +1,53 @@
 package ed04;
 
 /**
- * Represents a legal entity contact (Pessoa Juridica).
+ * Representa um contato do tipo Pessoa Jurídica, que estende {@link ContatoBase}
+ * e adiciona o atributo CNPJ.
  */
 public class PessoaJuridica extends ContatoBase {
     private String cnpj;
 
     /**
-     * Constructs a new PessoaJuridica object.
-     *
-     * @param nome  The name of the legal entity.
-     * @param telefone The phone number of the legal entity.
-     * @param email The email address of the legal entity.
-     * @param cnpj  The CNPJ of the legal entity.
+     * Construtor para PessoaJuridica.
+     * @param nome Nome do contato (Razão Social/Nome Fantasia).
+     * @param telefone Telefone do contato.
+     * @param email Email do contato.
+     * @param cnpj CNPJ do contato. Deve conter 14 dígitos numéricos.
+     * @throws IllegalArgumentException se o nome ou CNPJ forem inválidos.
      */
     public PessoaJuridica(String nome, String telefone, String email, String cnpj) {
         super(nome, telefone, email);
-        this.cnpj = cnpj;
+        setCnpj(cnpj); // Validação no setter
     }
 
     /**
-     * Gets the CNPJ of the legal entity.
-     *
-     * @return The CNPJ.
+     * Retorna o CNPJ do contato.
+     * @return o CNPJ.
      */
     public String getCnpj() {
         return cnpj;
     }
 
     /**
-     * Gets the unique identifier of the contact, which is the CNPJ for PessoaJuridica.
-     *
-     * @return The CNPJ.
+     * Define o CNPJ do contato.
+     * Realiza validação para 14 dígitos numéricos.
+     * @param cnpj o novo CNPJ.
+     * @throws IllegalArgumentException se o CNPJ for inválido.
      */
-    @Override
-    public String getIdentifier() {
-        return cnpj;
+    public void setCnpj(String cnpj) {
+        if (cnpj == null || !cnpj.matches("\\d{14}")) {
+            throw new IllegalArgumentException("CNPJ deve conter 14 dígitos numéricos.");
+        }
+        this.cnpj = cnpj;
     }
 
-    /**
-     * Displays the contact information for the legal entity.
-     */
     @Override
-    public void displayContactInfo() {
-        System.out.println("--- Pessoa Juridica ---");
-        System.out.println("Nome: " + getNome());
-        System.out.println("Telefone: " + getTelefone());
-        System.out.println("Email: " + getEmail());
-        System.out.println("CNPJ: " + cnpj);
-        System.out.println("-----------------------");
+    public String getIdentificador() {
+        return getCnpj();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", CNPJ: " + cnpj + " (Pessoa Jurídica)";
     }
 }

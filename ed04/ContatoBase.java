@@ -1,24 +1,23 @@
 package ed04;
 
 /**
- * Classe base abstrata para contatos, implementando a interface Contato.
- * Contém atributos comuns como nome, telefone e email.
+ * Classe abstrata base para contatos, contendo atributos e métodos comuns.
+ * Implementa a interface {@link Contato}.
  */
 public abstract class ContatoBase implements Contato {
-
-    protected String nome;
-    protected String telefone;
-    protected String email;
+    private String nome;
+    private String telefone;
+    private String email;
 
     /**
-     * Construtor para criar um ContatoBase.
-     *
-     * @param nome O nome do contato.
-     * @param telefone O telefone do contato.
-     * @param email O email do contato.
+     * Construtor para ContatoBase.
+     * @param nome Nome do contato. Deve ter no mínimo 3 caracteres.
+     * @param telefone Telefone do contato.
+     * @param email Email do contato.
+     * @throws IllegalArgumentException se o nome for inválido.
      */
     public ContatoBase(String nome, String telefone, String email) {
-        this.nome = nome;
+        setNome(nome); // Validação no setter
         this.telefone = telefone;
         this.email = email;
     }
@@ -30,7 +29,10 @@ public abstract class ContatoBase implements Contato {
 
     @Override
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome == null || nome.trim().length() < 3) {
+            throw new IllegalArgumentException("Nome é obrigatório e deve conter no mínimo 3 caracteres.");
+        }
+        this.nome = nome.trim();
     }
 
     @Override
@@ -54,16 +56,12 @@ public abstract class ContatoBase implements Contato {
     }
 
     /**
-     * Obtém o identificador único do contato (CPF ou CNPJ).
-     *
-     * @return O identificador único do contato.
+     * Retorna uma representação textual básica do contato.
+     * Classes filhas devem sobrescrever para incluir informações específicas.
+     * @return String com nome, telefone e email.
      */
     @Override
-    public abstract String getIdentifier();
-
-    /**
-     * Exibe as informações do contato.
-     */
-    @Override
-    public abstract void displayContactInfo();
+    public String toString() {
+        return "Nome: " + nome + ", Telefone: " + telefone + ", Email: " + email;
+    }
 }

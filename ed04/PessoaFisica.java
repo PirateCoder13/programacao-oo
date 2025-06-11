@@ -1,52 +1,52 @@
 package ed04;
-
 /**
- * Represents a physical person contact.
+ * Representa um contato do tipo Pessoa Física, que estende {@link ContatoBase}
+ * e adiciona o atributo CPF.
  */
 public class PessoaFisica extends ContatoBase {
     private String cpf;
 
     /**
-     * Constructs a new PessoaFisica object.
-     *
-     * @param nome  The name of the contact.
-     * @param telefone The phone number of the contact.
-     * @param email The email address of the contact.
-     * @param cpf   The CPF of the contact.
+     * Construtor para PessoaFisica.
+     * @param nome Nome do contato.
+     * @param telefone Telefone do contato.
+     * @param email Email do contato.
+     * @param cpf CPF do contato. Deve conter 11 dígitos numéricos.
+     * @throws IllegalArgumentException se o nome ou CPF forem inválidos.
      */
     public PessoaFisica(String nome, String telefone, String email, String cpf) {
         super(nome, telefone, email);
-        this.cpf = cpf;
+        setCpf(cpf); // Validação no setter
     }
 
     /**
-     * Gets the CPF of the contact.
-     *
-     * @return The CPF.
+     * Retorna o CPF do contato.
+     * @return o CPF.
      */
     public String getCpf() {
         return cpf;
     }
 
     /**
-     * Gets the unique identifier (CPF) of the contact.
-     *
-     * @return The CPF.
+     * Define o CPF do contato.
+     * Realiza validação para 11 dígitos numéricos.
+     * @param cpf o novo CPF.
+     * @throws IllegalArgumentException se o CPF for inválido.
      */
-    @Override
-    public String getIdentifier() {
-        return this.cpf;
+    public void setCpf(String cpf) {
+        if (cpf == null || !cpf.matches("\\d{11}")) {
+            throw new IllegalArgumentException("CPF deve conter 11 dígitos numéricos.");
+        }
+        this.cpf = cpf;
     }
 
-    /**
-     * Displays the contact information including CPF.
-     */
     @Override
-    public void displayContactInfo() {
-        System.out.println("Tipo: Pessoa Física");
-        System.out.println("Nome: " + getNome());
-        System.out.println("Telefone: " + getTelefone());
-        System.out.println("Email: " + getEmail());
-        System.out.println("CPF: " + this.cpf);
+    public String getIdentificador() {
+        return getCpf();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", CPF: " + cpf + " (Pessoa Física)";
     }
 }
