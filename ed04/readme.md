@@ -1,124 +1,34 @@
-https://chaua.gitbook.io/programacao-orientada-a-objetos/05-trabalhos/estudo-dirigido-04
+# Estudo Dirigido 04 - Agenda de Contatos
 
-Estudo Dirigido 04
+Este projeto implementa uma agenda de contatos em Java, utilizando conceitos de Programação Orientada a Objetos (POO), como herança, polimorfismo, interfaces e abstração.
 
-Instruções
+## Funcionalidades
 
-Entrega via GitHub
+- **Adicionar Contatos**: Permite cadastrar contatos do tipo Pessoa Física (CPF) ou Pessoa Jurídica (CNPJ).
+- **Listar Contatos**: Exibe todos os contatos cadastrados em formato tabular.
+- **Atualizar Contatos**: Modifica os dados de um contato existente.
+- **Remover Contatos**: Exclui contatos com base no identificador (CPF ou CNPJ).
+- **Buscar Contatos**: Localiza contatos pelo identificador (CPF ou CNPJ).
 
+## Estrutura das Classes
 
+### Classes Principais
+- `Main`: Classe principal que inicia a aplicação.
+- `ControleContato`: Controlador responsável pela lógica de negócios da agenda.
+- `VerContato`: Classe responsável pela interação com o usuário.
 
-Salvar os arquivos no diretório: ed04/
+### Classes de Contatos
+- `ContatoBase`: Classe abstrata base para contatos.
+- `PessoaFisica`: Representa contatos do tipo Pessoa Física (CPF).
+- `PessoaJuridica`: Representa contatos do tipo Pessoa Jurídica (CNPJ).
 
+### Interface
+- `Contato`: Define o contrato básico para um contato.
 
+## Exemplo de Uso
 
-Todos os códigos devem estar documentados com Javadoc
-
-
-
-Data limite de entrega: 11/05
-
-
-
-Agenda de Contatos
-
-Especificação do Sistema
-
-A aplicação deve permitir:
-
-
-
-Cadastro, listagem, atualização e exclusão de contatos.
-
-
-
-Diferenciação entre tipos de contatos (Pessoa Física e Pessoa Jurídica).
-
-
-
-Validação de dados básicos (nome obrigatório, CPF/CNPJ válidos, etc.).
-
-
-
-Exibição das informações em formato tabular na interface textual.
-
-
-
-Requisitos de Modelagem
-
-Entidade (Model)
-
-
-
-Interface Contato: define os métodos públicos obrigatórios.
-
-
-
-Classe abstrata ContatoBase: contém atributos comuns como nome, telefone e email.
-
-
-
-Classes concretas:
-
-
-
-PessoaFisica: possui o atributo cpf.
-
-
-
-PessoaJuridica: possui o atributo cnpj.
-
-
-
-Apresentação (View)
-
-
-
-Classe ContatoView: responsável pela entrada e exibição de dados no console.
-
-
-
-Controle (Controller)
-
-
-
-Classe ContatoController: orquestra a lógica da aplicação, manipulando a lista de contatos (armazenamento em memória).
-
-
-
-Regras de Negócio
-
-CPF deve conter 11 dígitos numéricos; CNPJ, 14.
-
-
-
-O campo nome é obrigatório e deve conter no mínimo 3 caracteres.
-
-
-
-Contatos devem ser únicos com base em CPF ou CNPJ.
-
-
-
-Requisitos Técnicos
-
-Encapsulamento: todos os atributos devem ser private, com métodos get e set conforme necessário.
-
-
-
-Herança: uso de uma superclasse abstrata e implementação de interface.
-
-
-
-Polimorfismo: uso de coleções do tipo Contato, com instâncias de PessoaFisica e PessoaJuridica.
-
-
-
-Utilização de estruturas de dados como ArrayList.
-
-
-
-Diagrama de Classes
-
-(captura de tela)
-![alt text](image.png)
+### Adicionar Contato
+```java
+ControleContato controller = new ControleContato();
+Contato contato = new PessoaFisica("João Silva", "123456789", "joao@email.com", "12345678901");
+controller.adicionar(contato);
